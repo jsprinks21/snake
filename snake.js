@@ -83,7 +83,7 @@ function Snake() {
     this.bg_color = "black";
     this.cvWidth = 160;
     this.cvHeight = 90;
-    this.pos = [80,45];
+    this.pos = [this.cvWidth / 2, this.cvHeight / 2];
     this.dir = null;
     this.food_loc = null;
     this.interval = null;
@@ -120,7 +120,7 @@ Snake.prototype.playPause = function(ctx) {
 };
 Snake.prototype.scale = function(ctx) {
     //scale canvas to 160x90
-    ctx.scale(ctx.canvas.clientWidth / 160, ctx.canvas.clientHeight / 90);
+    ctx.scale(ctx.canvas.clientWidth / this.cvWidth, ctx.canvas.clientHeight / this.cvHeight);
 };
 Snake.prototype.fillBackground = function(ctx) {
     ctx.fillStyle = this.bg_color;
@@ -177,7 +177,7 @@ Snake.prototype.move = function() {
     if (!(this.valid(loc))) {
 	//reset
 	this.snake_length = 5;
-	this.pos = [80, 45];
+	this.pos = [this.cvWidth / 2, this.cvHeight / 2];
 	this.snake = [];
 	this.createSnake();
     } else if (loc[0] == this.food_loc[0] && loc[1] == this.food_loc[1]) {
